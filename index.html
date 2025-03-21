@@ -12,27 +12,87 @@
             margin: 0;
             padding: 0;
             position: relative;
+            height: 100vh; /* Asegura que la altura sea del 100% de la ventana */
         }
+
         h1 {
             color: #d4a017;
         }
+
         .container {
-            margin-top: 50px;
+            position: absolute; /* Cambiado a 'absolute' */
+            bottom: 0; /* Coloca el contenido en la parte inferior */
+            left: 0;
+            right: 0;
+            padding-bottom: 20px; /* Espacio adicional para el botón */
         }
-        .flower-img {
-            width: 250px;
-            height: auto;
-        }
+
         .message {
             font-size: 1.2em;
             margin: 20px;
         }
-        .gif-container img {
-            width: 150px; /* Hacemos las flores más pequeñas */
-            height: auto;
+
+        .flower {
+            position: absolute;
+            top: calc(50% - 80px);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
-        .playlist-link {
-            display: inline-block;
+
+        .petal {
+            width: 70px;
+            height: 110px;
+            background-color: yellow;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .petal:nth-child(1) { 
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        } 
+        .petal:nth-child(2) { 
+            top: 50%;
+            left: -20px;
+            transform: translateY(-50%) rotate(90deg);
+        } 
+        .petal:nth-child(3) { 
+            top: 50%;
+            left: calc(100% - 50px);
+            transform: translateY(-50%) rotate(270deg);
+        } 
+        .petal:nth-child(4) { 
+            top: calc(100% - 60px);
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+        }
+
+        .center {
+            width: 50px;
+            height: 50px;
+            background-color: orange;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .stem {
+            width: 10px;
+            height: 150px;
+            background-color: green;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cat-button {
             margin-top: 20px;
             padding: 10px 20px;
             background-color: #ffcc00;
@@ -40,7 +100,10 @@
             text-decoration: none;
             font-weight: bold;
             border-radius: 5px;
+            cursor: pointer;
+            border: none;
         }
+
         #cat-img {
             display: none;
             position: absolute;
@@ -50,13 +113,18 @@
     </style>
 </head>
 <body>
+    <div class="flower">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div> <!-- Centro de la flor -->
+        <div class="stem"></div>
+    </div>
+
     <div class="container">
-        <h1>Hola feliz día, ue cada flor amarilla en tu camino te recuerde lo especial que eres :) </h1>
-        <img src="gatitoinsano.gif" alt="Flores Amarillas" class="flower-img">
+        <h1>Hola feliz día, que cada flor amarilla en tu camino te recuerde lo especial que eres 💛</h1>
         <p class="message">Un pequeño detalle para un día especial, espero que te guste.</p>
-        <div class="gif-container">
-            <img src="floresamarillas.gif" alt="Flores Amarillas">
-        </div>
         <button class="cat-button" onclick="showCat()">Haz clic aquí</button>
         <img id="cat-img" src="gatitobailando.gif" alt="Gato bailando">
     </div>
@@ -64,8 +132,8 @@
     <script>
         function showCat() {
             let catImg = document.getElementById("cat-img");
-            let maxX = window.innerWidth - 220; // Evita que se salga de la pantalla
-            let maxY = window.innerHeight - 220; 
+            let maxX = window.innerWidth - 220;
+            let maxY = window.innerHeight - 220;
             let randomX = Math.random() * maxX;
             let randomY = Math.random() * maxY;
 
@@ -78,7 +146,7 @@
                 catImg.style.opacity = "0";
                 setTimeout(() => {
                     catImg.style.display = "none";
-                }, 300); // Un pequeño delay para que desaparezca después de la animación
+                }, 300);
             }, 3000);
         }
     </script>
